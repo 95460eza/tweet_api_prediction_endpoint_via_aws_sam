@@ -24,5 +24,5 @@ jobs:
       - run: python -m pytest
 
       # sam deploy
-      #- run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --capabilities CAPABILITY_IAM --region eu-north-1
-      - run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --stack-name sam-app2 --s3-bucket bucketforawssamtweetpredictionapideploymodelkeraslstm --capabilities CAPABILITY_IAM --region eu-north-1
+      - run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --stack-name sam-app2 --capabilities CAPABILITY_IAM --region eu-north-1
+      #- run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --stack-name sam-app2 --s3-bucket bucketforawssamtweetpredictionapideploymodelkeraslstm --capabilities #CAPABILITY_IAM --region eu-north-1
