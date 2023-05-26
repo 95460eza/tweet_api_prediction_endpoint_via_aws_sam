@@ -1,6 +1,7 @@
 tensorflow
 pandas
 pytest
+numpy
 
 #uvicorn
 #pillow
