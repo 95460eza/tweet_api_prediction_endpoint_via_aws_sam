@@ -3,7 +3,7 @@
 import tensorflow
 import json
 import pandas as pd
-#import pytest
+import pytest
 #import uvicorn
 
 
