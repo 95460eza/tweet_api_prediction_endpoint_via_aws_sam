@@ -1,29 +1,32 @@
-import base64
+
+import uvicorn
+import tensorflow
 import json
-import numpy as np
-import tensorflow as tf
-
-from PIL import Image
-from io import BytesIO
+import pandas as pd
 
 
-model_file = '/opt/ml/model'
-model = tf.keras.models.load_model(model_file)
+
+model_keras_lstm = tensorflow.keras.models.load_model("model_keras_lstm")
+
+# Check its architecture
+#model_keras_lstm.summary()
+
 
 
 def lambda_handler(event, context):
-    image_bytes = event['body'].encode('utf-8')
-    image = Image.open(BytesIO(base64.b64decode(image_bytes))).convert(mode='L')
-    image = image.resize((28, 28))
 
-    probabilities = model(np.array(image).reshape(-1, 28, 28, 1))
-    label = np.argmax(probabilities)
+    # Make the input JSON into a dictionary
+    data = json.loads(event['body'])
 
-    return {
-        'statusCode': 200,
-        'body': json.dumps(
-            {
-                "predicted_label": int(label),
-            }
-        )
-    }
+    # Make the dictionary into a dataframe
+    df = pd.DataFrame.from_dict(data)
+
+    probability = model_keras_lstm.predict(df)
+    
+    return {'statusCode': 200, 
+            'body': json.dumps(
+                               {"probability": probability[0][0].item(), }
+                              )
+          }
+
+ 
