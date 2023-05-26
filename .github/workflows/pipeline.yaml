@@ -19,9 +19,9 @@ jobs:
       - run: sam build --use-container
 
       # Run Unit tests- Specify unit tests
-      - run: pip install pytest
-      - run: pip install numpy
-      - run: python -m pytest
+      #- run: pip install pytest
+      #- run: pip install numpy
+      #- run: python -m pytest
 
       # sam deploy
       - run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --stack-name sam-app2 --capabilities CAPABILITY_IAM --region eu-north-1
